@@ -1,0 +1,44 @@
+{
+  "name": "justserpapi-openclaw-websearch",
+  "version": "0.1.0",
+  "owner": {
+    "name": "JustSerpAPI",
+    "url": "https://justserpapi.com"
+  },
+  "metadata": {
+    "description": "OpenClaw plugin marketplace for JustSerpAPI web search."
+  },
+  "plugins": [
+    {
+      "name": "justserpapi",
+      "version": "0.1.0",
+      "description": "JustSerpAPI web_search provider for OpenClaw.",
+      "source": ".",
+      "author": {
+        "name": "JustSerpAPI",
+        "url": "https://justserpapi.com"
+      },
+      "homepage": "https://justserpapi.com",
+      "repository": "https://github.com/justserpapi/justserpapi-openclaw-websearch",
+      "license": "MIT",
+      "keywords": [
+        "openclaw",
+        "openclaw-plugin",
+        "web-search",
+        "search-provider",
+        "serp-api",
+        "google-search",
+        "justserpapi"
+      ],
+      "category": "search",
+      "tags": [
+        "openclaw",
+        "web-search",
+        "search-provider",
+        "serp",
+        "google-search",
+        "justserpapi"
+      ]
+    }
+  ]
+}

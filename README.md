@@ -33,6 +33,31 @@ openclaw plugins list --enabled
 openclaw plugins inspect justserpapi
 ```
 
+## Install From GitHub Marketplace
+
+This repository also ships a marketplace manifest at `.claude-plugin/marketplace.json`, so users can install the plugin from the public GitHub repo without npm publishing.
+
+Inspect the marketplace:
+
+```bash
+openclaw plugins marketplace list justserpapi/justserpapi-openclaw-websearch
+```
+
+Install from the marketplace:
+
+```bash
+openclaw plugins install justserpapi --marketplace justserpapi/justserpapi-openclaw-websearch
+openclaw plugins enable justserpapi
+```
+
+The full GitHub URL works too:
+
+```bash
+openclaw plugins install justserpapi --marketplace https://github.com/justserpapi/justserpapi-openclaw-websearch
+```
+
+For remote marketplaces, OpenClaw requires plugin sources to be relative paths inside the marketplace repository. This plugin's marketplace entry uses `"source": "."`, pointing at this native OpenClaw plugin root.
+
 ## Configure
 
 Add the provider config to your OpenClaw config:

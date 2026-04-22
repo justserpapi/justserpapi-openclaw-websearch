@@ -4,6 +4,7 @@
   "description": "OpenClaw web_search provider plugin for JustSerpAPI",
   "type": "module",
   "private": true,
+  "main": "./index.ts",
   "license": "MIT",
   "homepage": "https://justserpapi.com",
   "repository": {
@@ -16,8 +17,10 @@
   "keywords": [
     "openclaw",
     "openclaw-plugin",
+    "search-provider",
     "web-search",
     "serp",
+    "serp-api",
     "google-search",
     "justserpapi"
   ],
@@ -52,6 +55,9 @@
   "openclaw": {
     "extensions": [
       "./index.ts"
+    ],
+    "providers": [
+      "justserpapi"
     ]
   }
 }
