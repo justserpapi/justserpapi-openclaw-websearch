@@ -1,10 +1,41 @@
 # JustSerpAPI OpenClaw Web Search Provider
 
 OpenClaw native plugin that registers `justserpapi` as a `web_search` provider.
+It lets OpenClaw use [JustSerpAPI](https://justserpapi.com) for Google SERP-backed web search.
 
-## Install
+## Requirements
 
-Install or link this plugin into your OpenClaw environment, then enable it in your OpenClaw config.
+- OpenClaw with plugin support
+- Node.js `>=22.14.0`
+- A JustSerpAPI API key from the JustSerpAPI dashboard
+
+## Install From GitHub
+
+OpenClaw installs native plugins from local paths. For GitHub distribution, clone this public repo first, then install the local plugin directory.
+
+```bash
+git clone https://github.com/justserpapi/justserpapi-openclaw-websearch.git
+cd justserpapi-openclaw-websearch
+openclaw plugins install . --link
+openclaw plugins enable justserpapi
+```
+
+Use `--link` while testing or developing so OpenClaw loads the checked-out repository. For a copied install instead, omit `--link`:
+
+```bash
+openclaw plugins install .
+```
+
+Confirm OpenClaw can see the plugin:
+
+```bash
+openclaw plugins list --enabled
+openclaw plugins inspect justserpapi
+```
+
+## Configure
+
+Add the provider config to your OpenClaw config:
 
 ```json
 {
@@ -40,12 +71,31 @@ You can also provide credentials with environment variables:
 export JUSTSERPAPI_API_KEY="YOUR_JUSTSERPAPI_KEY"
 ```
 
-Supported fallbacks:
+Supported environment fallbacks:
 
 - `JUSTSERPAPI_API_KEY`
 - `JUSTSERP_API_KEY`
 - `JUSTSERPAPI_BASE_URL`
 - `JUSTSERP_BASE_URL`
+
+## Optional Settings
+
+Under `plugins.entries.justserpapi.config.webSearch`:
+
+- `apiKey`: JustSerpAPI API key.
+- `baseUrl`: API base URL, defaults to `https://api.justserpapi.com`.
+- `language`: default Google language code, such as `en`.
+- `country`: default Google country code, such as `us`.
+- `safeSearch`: `active` or `off`.
+- `count`: default result count, clamped to 1-10.
+
+Tool-call parameters can override the configured defaults:
+
+- `query`
+- `count`
+- `country`
+- `language`
+- `safeSearch`
 
 ## How It Works
 
@@ -68,21 +118,24 @@ It maps JustSerpAPI `data.organic_results[]` into OpenClaw web search results:
 - `favicon`
 - `position`
 
-## Optional Settings
+## Troubleshooting
 
-Under `plugins.entries.justserpapi.config.webSearch`:
-
-- `apiKey`: JustSerpAPI API key.
-- `baseUrl`: API base URL, defaults to `https://api.justserpapi.com`.
-- `language`: default Google language code, such as `en`.
-- `country`: default Google country code, such as `us`.
-- `safeSearch`: `active` or `off`.
-- `count`: default result count, clamped to 1-10.
+- `missing_justserpapi_api_key`: configure `plugins.entries.justserpapi.config.webSearch.apiKey` or set `JUSTSERPAPI_API_KEY`.
+- `401` or `403`: check that the API key is valid and the account has permission/credits.
+- `429`: the JustSerpAPI account is rate limited; retry later or adjust usage.
+- No `web_search` results: confirm `tools.web.search.provider` is set to `justserpapi` and the plugin is enabled.
 
 ## Development
 
 ```bash
-npm install
+npm install --omit=peer
 npm test
 npm run typecheck
+npm pack --dry-run
 ```
+
+`openclaw` is declared as an optional peer dependency so this package can be tested without vendoring the full OpenClaw runtime.
+
+## Security
+
+Do not commit real API keys. Use OpenClaw secret storage or environment variables for credentials.

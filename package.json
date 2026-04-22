@@ -4,6 +4,23 @@
   "description": "OpenClaw web_search provider plugin for JustSerpAPI",
   "type": "module",
   "private": true,
+  "license": "MIT",
+  "homepage": "https://justserpapi.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justserpapi/justserpapi-openclaw-websearch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/justserpapi/justserpapi-openclaw-websearch/issues"
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "web-search",
+    "serp",
+    "google-search",
+    "justserpapi"
+  ],
   "files": [
     "README.md",
     "index.ts",
@@ -15,6 +32,9 @@
   "scripts": {
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22.14.0"
   },
   "peerDependencies": {
     "openclaw": ">=2026.4.21"
