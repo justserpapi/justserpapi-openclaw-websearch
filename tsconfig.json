@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "types": ["node", "vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "openclaw/plugin-sdk/config-runtime": ["./src/test-support/openclaw/config-runtime.ts"],
+      "openclaw/plugin-sdk/plugin-entry": ["./src/test-support/openclaw/plugin-entry.ts"],
+      "openclaw/plugin-sdk/provider-web-search": [
+        "./src/test-support/openclaw/provider-web-search.ts"
+      ],
+      "openclaw/plugin-sdk/provider-web-search-contract": [
+        "./src/test-support/openclaw/provider-web-search-contract.ts"
+      ],
+      "openclaw/plugin-sdk/secret-input": ["./src/test-support/openclaw/secret-input.ts"],
+      "openclaw/plugin-sdk/security-runtime": ["./src/test-support/openclaw/security-runtime.ts"],
+      "openclaw/plugin-sdk/text-runtime": ["./src/test-support/openclaw/text-runtime.ts"]
+    }
+  },
+  "include": ["./*.ts", "./src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "coverage"]
+}

@@ -1,0 +1,69 @@
+{
+  "id": "justserpapi",
+  "name": "JustSerpAPI",
+  "description": "JustSerpAPI web_search provider for OpenClaw",
+  "version": "0.1.0",
+  "providerAuthEnvVars": {
+    "justserpapi": ["JUSTSERPAPI_API_KEY", "JUSTSERP_API_KEY"]
+  },
+  "uiHints": {
+    "webSearch.apiKey": {
+      "label": "JustSerpAPI API Key",
+      "help": "API key for JustSerpAPI web search (fallback: JUSTSERPAPI_API_KEY or JUSTSERP_API_KEY).",
+      "sensitive": true,
+      "placeholder": "sk-..."
+    },
+    "webSearch.baseUrl": {
+      "label": "JustSerpAPI Base URL",
+      "help": "JustSerpAPI API base URL override."
+    },
+    "webSearch.language": {
+      "label": "Default language",
+      "help": "Optional Google language code, such as en."
+    },
+    "webSearch.country": {
+      "label": "Default country",
+      "help": "Optional Google country code, such as us."
+    },
+    "webSearch.safeSearch": {
+      "label": "Default SafeSearch",
+      "help": "Optional default SafeSearch setting: active or off."
+    }
+  },
+  "contracts": {
+    "webSearchProviders": ["justserpapi"]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "webSearch": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "apiKey": {
+            "type": ["string", "object"]
+          },
+          "baseUrl": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "safeSearch": {
+            "type": "string",
+            "enum": ["active", "off"]
+          },
+          "count": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 10
+          }
+        }
+      }
+    }
+  }
+}
